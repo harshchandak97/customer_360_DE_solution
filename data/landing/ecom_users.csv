@@ -1,0 +1,8 @@
+user_id,full_name,email_address,mobile,dob,city,last_updated
+U101,"SHARMA, Priya", Priya.Sharma@Gmail.com ,9845012345,12/04/1990,Bangalore,2026-02-14
+U102,Rahul Varma,rahul.verma@outlook.com,09900123456,30/08/1987,Mumbai,2026-03-01
+U103,Neha Mehta,mehta.family@gmail.com,+91 98860 22222,18/09/1995,Mumbai,2025-12-12
+U104,rahul kumar,rahulk.blr@gmail.com,9123456780,03/11/1985,BLR,2026-01-20
+U105,Mr. Sanjay Rao,,9999999999,,Chennai,2025-09-09
+U106,kavya iyer,KAVYA.IYER@GMAIL.COM,97400 44444,,Bengaluru,2026-02-02
+,Arjun Nair,arjun.nair@gmail.com,9988776655,14/02/1992,Kochi,2026-01-15

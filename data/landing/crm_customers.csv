@@ -1,0 +1,8 @@
+crm_id,first_name,last_name,email,phone,date_of_birth,city,updated_at
+C001,Priya,Sharma,priya.sharma@gmail.com,+91-98450-12345,1990-04-12,Bengaluru,2025-11-02
+C002,Rahul,Verma,rahul.v@yahoo.com,+91-99001-23456,1987-08-30,Pune,2024-06-15
+C003,Rahul,Verma,,+91-99001-23456,1987-08-30,Pune,2026-01-10
+C004,Anil,Mehta,mehta.family@gmail.com,+91-98860-11111,1962-02-05,Mumbai,2025-03-01
+C005,Rahul,Kumar,rk1991@gmail.com,+91-90000-55555,1991-05-20,Bengaluru,2025-07-07
+C006,Anita,Desai,anita.desai@gmail,+91-98200-77777,1988-12-01,Hyderabad,2025-10-10
+C007,Kavya,Iyer,kavya.iyer@gmail.com,+91-97400-33333,1993-07-21,Chennai,2025-05-05

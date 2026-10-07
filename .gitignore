@@ -1,0 +1,10 @@
+# local database (rebuilt by the pipeline)
+data/warehouse.duckdb
+data/warehouse.duckdb.wal
+# python
+.venv/
+__pycache__/
+# dbt build artefacts
+dbt/target/
+dbt/logs/
+dbt/dbt_packages/

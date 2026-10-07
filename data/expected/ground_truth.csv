@@ -1,0 +1,15 @@
+source_system,source_id,true_person_id,note
+crm,C001,P01,same person as U101 (format differences only)
+ecom,U101,P01,same person as C001
+crm,C002,P02,duplicate within CRM (C003) and same as U102
+crm,C003,P02,duplicate of C002; email missing
+ecom,U102,P02,name typo Varma; moved Pune->Mumbai; new email
+crm,C004,P03,shares family email with U103 but different person
+ecom,U103,P04,shares family email with C004 but different person
+crm,C005,P05,same common name as U104 but different person
+ecom,U104,P06,same common name as C005 but different person
+ecom,U105,P07,placeholder phone 9999999999; no email
+crm,C006,P08,invalid email -> should be nulled with DQ warning
+crm,C007,P09,same person as U106 (weak evidence -> expect review queue)
+ecom,U106,P09,same person as C007; changed phone and city; no DOB
+ecom,,P10,missing user_id -> expect quarantine

@@ -1,0 +1,12 @@
+# Every customer source the pipeline loads.
+# Adding a new source = add one entry here (+ one dbt staging model later).
+sources:
+  - name: crm                     # short system name, used for lineage
+    table: crm_customers          # table created in the DuckDB "raw" schema
+    file: data/landing/crm_customers.csv
+    id_column: crm_id             # the source's own record ID
+
+  - name: ecom
+    table: ecom_users
+    file: data/landing/ecom_users.csv
+    id_column: user_id
