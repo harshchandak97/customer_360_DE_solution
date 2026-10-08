@@ -38,3 +38,11 @@ models:
           - accepted_values:
               arguments:
                 values: ["match", "review", "no_match"]
+
+  - name: int_customer_clusters
+    description: One row per usable source record with the customer_id of the person it belongs to.
+    columns:
+      - name: record_key
+        data_tests: [unique, not_null]
+      - name: customer_id
+        data_tests: [not_null]
