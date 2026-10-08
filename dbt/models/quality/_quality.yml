@@ -3,3 +3,6 @@ version: 2
 models:
   - name: quarantine_records
     description: Rows that could not be processed, with the reason. Reviewed by the data owner.
+
+  - name: matching_accuracy
+    description: Pairwise precision and recall of matching against data/expected/ground_truth.csv.

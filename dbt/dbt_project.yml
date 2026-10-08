@@ -20,6 +20,15 @@ vars:
   name_similarity_min: 0.90     # Jaro-Winkler (0..1) needed for "similar name"
   max_expected_cluster_size: 10 # warn if one "person" has more records than this (over-merging)
 
+  # Accuracy check against a hand-labelled answer key (data/expected/ground_truth.csv).
+  # Set to false when running on real data that has no answer key.
+  evaluate_accuracy: true
+  min_match_precision: 0.95     # fail the run if more than 5% of merges are wrong
+
+# After every run/build: record each data quality check's result in quality.dq_results
+on-run-end:
+  - "{{ log_dq_results(results) }}"
+
 models:
   customer_360:
     staging:
