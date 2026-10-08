@@ -1,0 +1,7 @@
+rule_name,points,description
+email_match,40,Both records have the same valid email
+phone_match,35,Both records have the same valid phone
+dob_match,20,Both records have the same date of birth
+name_similar,15,Full names are very similar (Jaro-Winkler >= name_similarity_min)
+city_match,5,Both records are in the same city
+dob_conflict,-40,Both records have a date of birth and they differ (strong sign of two people)

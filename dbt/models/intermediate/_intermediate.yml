@@ -20,3 +20,21 @@ models:
           - accepted_values:
               arguments:
                 values: ["missing_source_id", "no_identifying_fields"]
+
+  - name: int_candidate_pairs
+    description: Pairs of records sharing at least one block key (same email, same phone, or same last name + city).
+    columns:
+      - name: pair_key
+        data_tests: [unique, not_null]
+
+  - name: int_scored_pairs
+    description: Every candidate pair with field comparisons, a score, a readable explanation and a decision.
+    columns:
+      - name: pair_key
+        data_tests: [unique, not_null]
+      - name: decision
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ["match", "review", "no_match"]
