@@ -1,0 +1,5 @@
+version: 2
+
+models:
+  - name: quarantine_records
+    description: Rows that could not be processed, with the reason. Reviewed by the data owner.

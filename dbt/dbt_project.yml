@@ -1,0 +1,31 @@
+name: customer_360
+version: "1.0.0"
+config-version: 2
+profile: customer_360
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+test-paths: ["tests"]
+
+vars:
+  # Staging models that feed the unified customer table.
+  # New source = add its staging model here (plus an entry in config/sources.yml).
+  customer_staging_models: ["stg_crm_customers", "stg_ecom_users"]
+  default_country_code: "91"   # used when a phone number has no country code
+
+models:
+  customer_360:
+    staging:
+      +schema: staging
+      +materialized: view      # cheap, always reflects the latest raw data
+    intermediate:
+      +schema: intermediate
+      +materialized: table
+    quality:
+      +schema: quality
+      +materialized: table
+
+seeds:
+  customer_360:
+    +schema: reference

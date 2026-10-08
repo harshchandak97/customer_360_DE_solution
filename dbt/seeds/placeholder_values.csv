@@ -1,0 +1,6 @@
+value_type,value,reason
+phone,+919999999999,dummy number entered to skip a form field
+phone,+910000000000,dummy number
+phone,+911234567890,dummy number
+email,test@test.com,dummy email
+email,na@na.com,dummy email

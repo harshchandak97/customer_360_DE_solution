@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: stg_crm_customers
+    description: CRM records converted to the standard customer shape.
+    columns:
+      - name: source_record_id
+        description: crm_id from the CRM.
+        data_tests:
+          - not_null:
+              config: {severity: warn}   # missing IDs are quarantined downstream
+
+  - name: stg_ecom_users
+    description: Online store records converted to the standard customer shape.
+    columns:
+      - name: source_record_id
+        description: user_id from the store.
+        data_tests:
+          - not_null:
+              config: {severity: warn}   # missing IDs are quarantined downstream

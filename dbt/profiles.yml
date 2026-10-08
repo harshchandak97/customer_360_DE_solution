@@ -1,0 +1,8 @@
+customer_360:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      # Same file the Python loader writes to. Docker overrides this with DUCKDB_PATH.
+      path: "{{ env_var('DUCKDB_PATH', '../data/warehouse.duckdb') }}"
+      threads: 1

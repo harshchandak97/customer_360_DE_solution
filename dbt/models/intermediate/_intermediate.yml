@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: int_customer_records
+    description: >
+      Silver layer. Every source record in one standard shape, with field-level issues
+      noted and unusable rows flagged for quarantine.
+    columns:
+      - name: record_key
+        description: source_system:source_record_id, unique across all sources.
+        data_tests: [unique, not_null]
+      - name: source_system
+        data_tests: [not_null]
+      - name: email
+        description: Lowercase, trimmed, NULL if invalid or a placeholder.
+      - name: phone
+        description: +91XXXXXXXXXX format, NULL if invalid or a placeholder.
+      - name: quarantine_reason
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ["missing_source_id", "no_identifying_fields"]

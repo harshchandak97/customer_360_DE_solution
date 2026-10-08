@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: raw
+    description: Bronze layer. Loaded unchanged by scripts/load_raw.py (all columns are text).
+    schema: raw
+    tables:
+      - name: crm_customers
+        description: CRM export. One row per CRM customer record.
+      - name: ecom_users
+        description: Online store export. One row per store account.
