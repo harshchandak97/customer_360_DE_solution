@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: customer_360
+    description: Golden record. One row per customer with the best value for each field.
+    columns:
+      - name: customer_id
+        data_tests: [unique, not_null]
+      - name: source_record_count
+        data_tests: [not_null]
+
+  - name: customer_xref
+    description: Maps every usable source record to its customer_id.
+    columns:
+      - name: record_key
+        data_tests: [unique, not_null]
+      - name: customer_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('customer_360')
+                field: customer_id
+
+  - name: match_evidence
+    description: Every compared pair with score, decision and the reasons behind it.
+    columns:
+      - name: pair_key
+        data_tests: [unique, not_null]
+
+  - name: review_queue
+    description: Pairs scored in the review band, waiting for a human decision.
+    columns:
+      - name: pair_key
+        data_tests: [unique, not_null]

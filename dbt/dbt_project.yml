@@ -31,6 +31,9 @@ models:
     quality:
       +schema: quality
       +materialized: table
+    marts:
+      +schema: marts
+      +materialized: table
 
 seeds:
   customer_360:
