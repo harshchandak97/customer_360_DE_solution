@@ -1,0 +1,2 @@
+pair_key,customer_id_a,customer_id_b,name_a,name_b,match_score,match_reasons,review_status
+crm:C007 <> ecom:U106,C360-0B9764B8CA,C360-BE2B9ED97E,Kavya Iyer,Kavya Iyer,55,"email +40, name 1.0 +15",pending

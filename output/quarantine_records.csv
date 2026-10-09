@@ -1,0 +1,2 @@
+record_key,source_system,source_record_id,quarantine_reason,full_name,email_original,phone_original,_source_file,_loaded_at
+ecom:MISSING-01e0acd3,ecom,,missing_source_id,Arjun Nair,arjun.nair@gmail.com,9988776655,ecom_users.csv,2026-10-08 15:52:25

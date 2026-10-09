@@ -1,0 +1,20 @@
+# One command runs everything:  docker compose up --build
+# Airflow UI: http://localhost:8080  (no login needed locally)
+services:
+  airflow:
+    build: .
+    # Linux only: run `echo "AIRFLOW_UID=$(id -u)" > .env` once so files written to the
+    # mounted folder belong to you. Not needed on Mac/Windows (Docker Desktop).
+    user: "${AIRFLOW_UID:-50000}:0"
+    command: standalone            # scheduler + web UI + metadata DB in one container (local use only)
+    ports:
+      - "8080:8080"
+    environment:
+      AIRFLOW__CORE__LOAD_EXAMPLES: "False"
+      AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "False"   # DAG starts running without a click
+      AIRFLOW__CORE__SIMPLE_AUTH_MANAGER_ALL_ADMINS: "True" # skip the login screen locally
+      DUCKDB_PATH: /opt/airflow/project/data/warehouse.duckdb
+      GROUND_TRUTH_PATH: /opt/airflow/project/data/expected/ground_truth.csv
+    volumes:
+      - ./:/opt/airflow/project          # code, data and output shared with your machine
+      - ./airflow/dags:/opt/airflow/dags

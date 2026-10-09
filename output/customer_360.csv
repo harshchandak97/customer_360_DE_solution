@@ -1,0 +1,11 @@
+customer_id,first_name,last_name,date_of_birth,email,phone,city,name_from_record,email_from_record,source_record_count,source_systems,source_records,last_updated_at,has_pending_review
+C360-0B9764B8CA,Kavya,Iyer,1993-07-21,kavya.iyer@gmail.com,+919740033333,Chennai,crm:C007,crm:C007,1,crm,crm:C007,2025-05-05 00:00:00,true
+C360-13C43B4C50,Rahul,Verma,1987-08-30,rahul.verma@outlook.com,+919900123456,Mumbai,crm:C003,ecom:U102,3,"crm, ecom","crm:C002, crm:C003, ecom:U102",2026-03-01 00:00:00,false
+C360-1A197F27CF,Rahul,Kumar,1991-05-20,rk1991@gmail.com,+919000055555,Bengaluru,crm:C005,crm:C005,1,crm,crm:C005,2025-07-07 00:00:00,false
+C360-1C3B776DE8,Neha,Mehta,1995-09-18,mehta.family@gmail.com,+919886022222,Mumbai,ecom:U103,ecom:U103,1,ecom,ecom:U103,2025-12-12 00:00:00,false
+C360-5144734450,Anil,Mehta,1962-02-05,mehta.family@gmail.com,+919886011111,Mumbai,crm:C004,crm:C004,1,crm,crm:C004,2025-03-01 00:00:00,false
+C360-5C78EDB76C,Anita,Desai,1988-12-01,,+919820077777,Hyderabad,crm:C006,,1,crm,crm:C006,2025-10-10 00:00:00,false
+C360-844DCACC30,Sanjay,Rao,,,,Chennai,ecom:U105,,1,ecom,ecom:U105,2025-09-09 00:00:00,false
+C360-BE2B9ED97E,Kavya,Iyer,,kavya.iyer@gmail.com,+919740044444,Bengaluru,ecom:U106,ecom:U106,1,ecom,ecom:U106,2026-02-02 00:00:00,true
+C360-C5544A5C7C,Priya,Sharma,1990-04-12,priya.sharma@gmail.com,+919845012345,Bengaluru,crm:C001,ecom:U101,2,"crm, ecom","crm:C001, ecom:U101",2026-02-14 00:00:00,false
+C360-DA523E809E,Rahul,Kumar,1985-11-03,rahulk.blr@gmail.com,+919123456780,Bengaluru,ecom:U104,ecom:U104,1,ecom,ecom:U104,2026-01-20 00:00:00,false

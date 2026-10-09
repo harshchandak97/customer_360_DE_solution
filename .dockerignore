@@ -1,0 +1,7 @@
+# Only requirements.txt is copied into the image; keep the build context small.
+.venv
+.git
+data/warehouse.duckdb*
+dbt/target
+dbt/logs
+output

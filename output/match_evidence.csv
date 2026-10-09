@@ -1,0 +1,8 @@
+pair_key,record_key_a,record_key_b,name_a,name_b,blocked_on,match_score,decision,match_reasons,email_match,phone_match,dob_match,dob_conflict,name_similarity,city_match
+crm:C001 <> ecom:U101,crm:C001,ecom:U101,Priya Sharma,Priya Sharma,"name_city, email, phone",115,match,"email +40, phone +35, dob +20, name 1.0 +15, city +5",true,true,true,false,1.0,true
+crm:C002 <> crm:C003,crm:C002,crm:C003,Rahul Verma,Rahul Verma,"name_city, phone",75,match,"phone +35, dob +20, name 1.0 +15, city +5",false,true,true,false,1.0,true
+crm:C002 <> ecom:U102,crm:C002,ecom:U102,Rahul Verma,Rahul Varma,phone,70,match,"phone +35, dob +20, name 0.944 +15",false,true,true,false,0.944,false
+crm:C003 <> ecom:U102,crm:C003,ecom:U102,Rahul Verma,Rahul Varma,phone,70,match,"phone +35, dob +20, name 0.944 +15",false,true,true,false,0.944,false
+crm:C007 <> ecom:U106,crm:C007,ecom:U106,Kavya Iyer,Kavya Iyer,email,55,review,"email +40, name 1.0 +15",true,false,false,false,1.0,false
+crm:C004 <> ecom:U103,crm:C004,ecom:U103,Anil Mehta,Neha Mehta,"name_city, email",5,no_match,"email +40, city +5, dob conflict -40",true,false,false,true,0.825,true
+crm:C005 <> ecom:U104,crm:C005,ecom:U104,Rahul Kumar,Rahul Kumar,name_city,-20,no_match,"name 1.0 +15, city +5, dob conflict -40",false,false,false,true,1.0,true

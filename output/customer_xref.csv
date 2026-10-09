@@ -1,0 +1,14 @@
+record_key,source_system,source_record_id,customer_id,cluster_size,link_type
+crm:C007,crm,C007,C360-0B9764B8CA,1,single_record
+crm:C002,crm,C002,C360-13C43B4C50,3,matched
+crm:C003,crm,C003,C360-13C43B4C50,3,matched
+ecom:U102,ecom,U102,C360-13C43B4C50,3,matched
+crm:C005,crm,C005,C360-1A197F27CF,1,single_record
+ecom:U103,ecom,U103,C360-1C3B776DE8,1,single_record
+crm:C004,crm,C004,C360-5144734450,1,single_record
+crm:C006,crm,C006,C360-5C78EDB76C,1,single_record
+ecom:U105,ecom,U105,C360-844DCACC30,1,single_record
+ecom:U106,ecom,U106,C360-BE2B9ED97E,1,single_record
+crm:C001,crm,C001,C360-C5544A5C7C,2,matched
+ecom:U101,ecom,U101,C360-C5544A5C7C,2,matched
+ecom:U104,ecom,U104,C360-DA523E809E,1,single_record

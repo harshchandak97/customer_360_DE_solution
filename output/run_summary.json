@@ -1,0 +1,17 @@
+{
+  "run_at_utc": "2026-10-08 15:52:30",
+  "source_rows": 14,
+  "quarantined_rows": 1,
+  "customers": 10,
+  "customers_from_multiple_records": 2,
+  "largest_customer_record_count": 3,
+  "pairs_compared": 7,
+  "pairs_auto_matched": 4,
+  "pairs_in_review": 1,
+  "dq_checks_passed": 31,
+  "dq_checks_warned": 4,
+  "dq_checks_failed": 0,
+  "match_precision": 1.0,
+  "match_recall": 0.8,
+  "match_recall_after_review": 1.0
+}
