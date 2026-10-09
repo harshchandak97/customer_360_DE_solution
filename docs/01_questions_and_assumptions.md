@@ -1,29 +1,28 @@
 # 1. Questions and Assumptions
 
-Customer 360 comes down to two opposite mistakes:
+The objective is a consolidated customer dataset with a common customer identity, built from two
+source systems whose data may contain duplicates, missing information, different formats,
+conflicting information, and the same customer appearing in both systems.
 
-- **False merge** - two different people get one ID (one customer could see another's orders: a privacy incident).
-- **False split** - one person keeps two IDs (duplicate marketing, inflated customer counts).
+## Questions I would ask if this were a real project
 
-Most questions below decide which mistake the business fears more and which data can be trusted.
+1. Who is the user of this data, and for what?
+2. What are the latency requirements for this system?
+3. What is the volume of data that we need to process?
+4. Which is worse: a false merge (two people get one ID) or a false split (one person keeps two IDs)?
+5. Which fields define a customer uniquely in both sources?
+6. If two sources have conflicting customer information, which source should be given more importance?
+7. Is there any shared ID across the systems (phone number, email ID, an identity card, etc.)?
+8. Who resolves unclear cases? Is there a dataset of known correct matches to test the system against?
 
-| # | Question I would ask | Assumption made here | Design implication |
+## Assumptions and their design implications
+
+| # | Assumption | Answers question | Design implication |
 |---|---|---|---|
-| 1 | Who uses the Customer 360 and for what? | Analytics and marketing, refreshed daily | Batch pipeline, no streaming layer |
-| 2 | Which is worse: a false merge or a false split? | A false merge | Merge only on strong evidence; uncertain pairs go to a human review queue; run fails if precision < 95% |
-| 3 | Is a "customer" a person, a household or a company? | An individual person | Family members sharing an email must not merge (date-of-birth conflict = negative evidence) |
-| 4 | Which datasets, how big, how often, full or incremental? | No datasets were received, so a small hand-built sample of two sources (CRM, online store) covers every issue type in the brief | Pipeline reads whatever files `config/sources.yml` lists; real files can be dropped in without code changes |
-| 5 | Is there a shared ID across systems (loyalty number, PAN)? | None | Matching relies on email, phone, name, date of birth and city |
-| 6 | Is each source's record ID unique and stable? | Yes | `source_system:source_record_id` is the record key; rows without an ID are quarantined |
-| 7 | Which source is more trustworthy for which field? | CRM for identity (name, DOB); most recent record for contact details | Survivorship rules + `seeds/source_trust.csv` |
-| 8 | Are deletions sent, or do records just disappear? | Each delivery is a full snapshot | Raw tables are replaced per run; production would append with load timestamps and detect deletes |
-| 9 | Which countries; do phones carry a country code? | India; numbers without a code get +91 | Phones normalised to `+91XXXXXXXXXX`; default country is a config value |
-| 10 | Can emails or phones be shared or fake (family email, 9999999999)? | Yes | Placeholder values are blanked (`seeds/placeholder_values.csv`); a shared email alone cannot outweigh a DOB conflict |
-| 11 | Are there known correct matches to test against? Who resolves unclear ones? | None provided; the sample ships with a labelled answer key; stewards in production | `data/expected/ground_truth.csv` drives a precision/recall check; review queue for stewards |
-| 12 | Must the customer ID stay the same across runs? Can merges be undone? | Yes / yes | IDs derived deterministically from the group's records; production adds a persistent ID registry and merge history |
-| 13 | Do we need history (what did we know last month)? | Yes in production; current state here | Production: snapshots (SCD Type 2) of the golden record |
-| 14 | Which privacy laws apply; who may see raw PII? | All PII is restricted (GDPR / India DPDP Act style) | Production: column masking, role-based access, deletion via the crosswalk |
-| 15 | Bad data: reject the whole file or set rows aside? | Set aside, stop only on structural failure | Bad fields blanked + warned; unusable rows quarantined; tests with error vs warn severity |
-
-## Gaps in the brief
-The brief does not define: whether "consolidated" means one merged record or linked records (I produce both: a golden record **and** a crosswalk), history, deletions, consent, freshness SLA, or who handles uncertain matches. These are documented above as assumptions.
+| 1 | The analytics and marketing team is the user. They write SQL queries on top of this data. | 1 | Output is a set of SQL-queryable tables (Customer 360, crosswalk, match evidence), exported as CSV here |
+| 2 | Data is refreshed daily, not in real time. | 2 | Batch architecture: a daily Airflow DAG; no streaming layer |
+| 3 | Volume is a few MBs today and can grow to GBs/TBs. The implementation uses two CSVs of a few MBs. | 3 | Local DuckDB is enough here; the same dbt models move to a cloud warehouse (Snowflake) for scale. Blocking keeps matching from comparing every record with every other |
+| 4 | A merge happens only on strong evidence. Uncertain pairs go to a human for review. | 4, 8 | Weighted scoring with a high auto-match threshold, a review queue for the middle band, and a check that fails the run if precision drops below 95% |
+| 5 | No single field identifies a customer and there is no shared ID; identity is decided from email, phone, name, date of birth and city together. | 5, 7 | Rule-based matching across several fields, with a date-of-birth conflict as strong evidence against a merge |
+| 6 | The CRM is more trustworthy for identity details (name, date of birth); the most recent record is best for contact details (email, phone, city). | 6 | Survivorship rules decide which value wins in the golden record; source ranking lives in a config file |
+| 7 | No datasets were received, so I hand-built a small sample covering the five data issues in the brief, with a labelled answer key. | 8 | The pipeline reads whatever files the source config lists, so the real datasets can be dropped into `data/landing/` without code changes. The answer key drives an automated precision/recall check |

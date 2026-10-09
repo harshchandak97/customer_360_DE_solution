@@ -179,12 +179,24 @@ By contrast, `C004`/`U103` share a family email but have different birth dates: 
 ---
 
 ## Where AI was used
-<!-- EDIT THIS SECTION: keep only what is true for you, and add your own examples. -->
-- **Used for:** brainstorming the questions and assumptions; comparing architecture options; generating the code
-  (loader, dbt models, macros, tests, DAG, Docker setup) step by step; drafting this README.
-- **How I verified it:** ran every step locally and checked the tables against expectations; built a labelled answer
-  key for the sample and added an automated precision/recall check; ran the full pipeline from a fresh clone and in Docker.
-- **Where I challenged or changed the AI's output:**
-  - It first recommended **Databricks** for production; I questioned the fit, and for a SQL-heavy, BI-facing workload the choice changed to **Snowflake**.
-  - It suggested **cutting scope** (no dbt / Airflow / Docker) to save time; I kept the full stack as designed.
-  - It proposed writing a **data generator** first; I chose a small hand-built sample covering every scenario to get the end-to-end pipeline working first.
+
+**How I worked with AI:** I owned the problem framing, the architecture and the key decisions; I used an AI assistant
+(Claude) as a pair engineer to generate code, explain unfamiliar tool details and speed up documentation.
+
+| Area | My role | AI's role |
+|---|---|---|
+| Questions and assumptions | Wrote the questions and assumptions (e.g. precision-first: merge only on strong evidence, uncertain pairs to human review) | Helped structure them and link them to design implications |
+| Architecture | Chose the stack (Snowflake + dbt + Airflow + Python for production, DuckDB locally), drew the diagram, set the design approach | Compared options and trade-offs on request |
+| Implementation | Defined each pipeline step and its expected outcome, ran every step locally, checked outputs, debugged environment issues | Generated the code (loader, dbt models, macros, tests, DAG, Docker setup) one step at a time |
+| Data | Designed the sample around the five data issues in the brief, with a labelled answer key | Helped draft the sample rows |
+| Documentation | Reviewed and edited all docs | Drafted the README and docs |
+
+**Where I challenged or changed the AI's output**
+- **Scope:** under time pressure the AI suggested dropping dbt, Airflow and Docker; I kept the full designed stack and delivered it working end to end.
+- **Production platform:** I questioned its initial Databricks recommendation; for an analytics team querying in SQL, a warehouse-first design (Snowflake or the client's existing warehouse) fits better.
+- **Own framing over generated content:** I replaced AI-drafted questions, assumptions and diagrams with my own.
+- **Prioritisation:** I deferred its proposed data generator to get a working end-to-end pipeline first.
+- **Simplicity:** I pushed back on overly complex first drafts and reduced the architecture to its core components before adding detail.
+
+**How I verified it:** ran each step and inspected the tables; an automated precision/recall check against the labelled
+answer key (the run fails if precision < 95%); ran the full pipeline from a fresh clone and in Docker/Airflow.
